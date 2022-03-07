@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid"> 
+    <a class="navbar-brand" >
+      <i class="fa-solid fa-mobile-screen-button"></i>
+    </a>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href=<%= root_path%>>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+      <%if (user_signed_in?) %>
+       <div class="btn-group dropstart">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-circle-user"></i> 
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item"><%= link_to "Mi tienda",'#',  class:'dropdown-item' %></a></li>
+            <li><a class="dropdown-item"><%= link_to "Editar", edit_user_registration_path, class:'dropdown-item' %></a></li>
+            <li><a class="dropdown-item"><%= link_to 'Desconectarse', destroy_user_session_path , method: :delete, data: { confirm: 'Are you sure?' }, class:'dropdown-item'%></a></li>
+          </ul> 
+          </div>
+      <%else %>
+   
+        <div class="btn-group dropstart">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-circle-user"></i> 
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="<%= new_user_session_path%>">Iniciar sesion</a></li>
+            <li><a class="dropdown-item" href="<%= new_user_registration_path%>">Registrarse</a></li>
+          </ul> 
+          </div>
+
+      <%end%>
+    </div>
+  </div>
+</nav>
+<% if @cart %>
+<div id="shopping_cart">
+<%= render :partial => "cart/cart" %>
+</div>
+<% end %>
