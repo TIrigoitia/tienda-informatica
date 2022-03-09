@@ -3,17 +3,15 @@
 <div class="text-center">
   <h1>Productos disponibles</h1>
 </div>
-<%if user_signed_in?%>
-  <% if current_user.admin? %>
+  <% if can? :manage, @product%>
     <div class="text-center mb-3">
       <%= link_to 'Agregar Producto', new_product_path , class:'btn btn-outline-success'%>
     </div>
   <%end%>
-<%end%>
  <div class="row row-cols-1 row-cols-md-3 g-4">
  
   <% @products.each do |product| %>
-     <div class="card" style="max-width: 18rem" >
+     <div class="card mx-2 mt-3" style="max-width: 18rem" >
       <%= image_tag("http://d3ugyf2ht6aenh.cloudfront.net/stores/001/395/398/products/whatsapp-image-2021-08-29-at-19-29-271-2fc15aa308a0a79b7216302763470796-640-0.jpeg", class:"card-img-top")%>
       <div class="card-body">
         <h5 class="card-title"><%= product.name%></h5>
@@ -35,5 +33,5 @@
     </div>
   <% end %>
 </div>
-<br>
+
 

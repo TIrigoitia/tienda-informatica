@@ -17,10 +17,14 @@
           <%end%>
         <%end%>
       </ul>
+      <button class="btn btn-secondary mx-3" href="#">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </button>
       <%if (user_signed_in?) %>
        <div class="btn-group dropstart">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-circle-user"></i> 
+            <a><%= current_user.email%></a> 
           </button>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item"><%= link_to "Editar", edit_user_registration_path, class:'dropdown-item' %></a></li>
@@ -31,7 +35,7 @@
    
         <div class="btn-group dropstart">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-circle-user"></i> 
+            <i class="fa-solid fa-circle-user"></i>
           </button>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="<%= new_user_session_path%>">Iniciar sesion</a></li>
@@ -42,4 +46,5 @@
       <%end%>
     </div>
   </div>
+  
 </nav>
