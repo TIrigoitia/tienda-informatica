@@ -12,7 +12,11 @@
  
   <% @products.each do |product| %>
      <div class="card mx-2 mt-3" style="max-width: 18rem" >
-      <%= image_tag("http://d3ugyf2ht6aenh.cloudfront.net/stores/001/395/398/products/whatsapp-image-2021-08-29-at-19-29-271-2fc15aa308a0a79b7216302763470796-640-0.jpeg", class:"card-img-top")%>
+        <%if product.image.attached?%>
+        <%= image_tag product.image, class:"card-img-top"%>
+        <%else%>
+          <%= image_tag "no_image.png",class:'card-img-top',style:'height:262px; width:262px ' %>
+        <%end%>
       <div class="card-body">
         <h5 class="card-title"><%= product.name%></h5>
         <h6 class="card-subtitle mb-2 text-muted">Precio: <%= product.price%></h6>
@@ -35,3 +39,4 @@
 </div>
 
 
+   
