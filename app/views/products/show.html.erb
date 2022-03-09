@@ -4,7 +4,11 @@
   <div class="card mb-3" style="max-width: 1080px;">
    <div class="row g-0">
      <div class="col-md-4">
-       <img src="http://d3ugyf2ht6aenh.cloudfront.net/stores/001/395/398/products/whatsapp-image-2021-08-29-at-19-29-271-2fc15aa308a0a79b7216302763470796-640-0.jpeg" class="img-fluid rounded-start" alt="...">
+      <%if @product.image.attached?%>
+        <%=image_tag @product.image, class:"img-fluid rounded-start w-100 h-100"%>
+        <%else%>
+          <%= image_tag "no_image.png",class:'img-fluid rounded-start w-100 h-100', style: 'height:50vw;width:100vw;margin-bottom:20px;' %>
+        <%end%>
      </div>
      <div class="col-md-8">
        <div class="card-body">
