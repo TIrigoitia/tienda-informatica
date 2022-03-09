@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_173720) do
-
-  create_table "cart_items", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "cart_id"
-    t.float "price"
-    t.integer "amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "carts", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2022_03_07_144718) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -44,6 +30,7 @@ ActiveRecord::Schema.define(version: 2022_03_03_173720) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "role", default: "client"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

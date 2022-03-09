@@ -3,13 +3,15 @@
 <div class="text-center">
   <h1>Productos disponibles</h1>
 </div>
-<div class="text-center mb-3">
-<%= link_to 'New Product', new_product_path , class:'btn btn-outline-success'%>
-</div>
+  <% if can? :manage, @product%>
+    <div class="text-center mb-3">
+      <%= link_to 'Agregar Producto', new_product_path , class:'btn btn-outline-success'%>
+    </div>
+  <%end%>
  <div class="row row-cols-1 row-cols-md-3 g-4">
  
   <% @products.each do |product| %>
-     <div class="card" style="max-width: 18rem" >
+     <div class="card mx-2 mt-3" style="max-width: 18rem" >
       <%= image_tag("http://d3ugyf2ht6aenh.cloudfront.net/stores/001/395/398/products/whatsapp-image-2021-08-29-at-19-29-271-2fc15aa308a0a79b7216302763470796-640-0.jpeg", class:"card-img-top")%>
       <div class="card-body">
         <h5 class="card-title"><%= product.name%></h5>
@@ -19,13 +21,17 @@
         <h6 class="card-subtitle mb-2 text-muted">Marca: <%= product.brand %></h6>
         <div class="btn-group" role="group">
         <!--BOTON DE AGREGAR AL CARRO-->
-        <%= link_to 'Show', product, class:'btn btn-outline-primary' %>
-        <%= link_to 'Edit', edit_product_path(product),class:'btn btn-outline-primary' %>
-        <%= link_to 'Eliminar', product ,method: :delete, data: {confirm:'¿Esta seguro?'}, class:'btn btn-outline-danger'%>
+        <%if can? :manage, product%>
+          <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
+          <%= link_to 'Editar', edit_product_path(product),class:'btn btn-outline-primary' %>
+          <%= link_to 'Eliminar', product ,method: :delete, data: {confirm:'¿Esta seguro?'}, class:'btn btn-outline-danger'%>
+        <%else%>
+           <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
+        <%end%>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-<br>
+
 

@@ -1,23 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="http://d3ugyf2ht6aenh.cloudfront.net/stores/001/395/398/products/whatsapp-image-2021-08-29-at-19-29-271-2fc15aa308a0a79b7216302763470796-640-0.jpeg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><%= @product.name %></h5>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Descripcion: <%= @product.description %></li>
-          <li class="list-group-item">Marca: <%= @product.brand %></li>
-          <li class="list-group-item">Modelo: <%= @product.model %></li>
-          <li class="list-group-item">Precio: <%= @product.price %></li>
-        </ul>
+<div class="text-center">
+  <div class="card mb-3" style="max-width: 1080px;">
+   <div class="row g-0">
+     <div class="col-md-4">
+       <img src="http://d3ugyf2ht6aenh.cloudfront.net/stores/001/395/398/products/whatsapp-image-2021-08-29-at-19-29-271-2fc15aa308a0a79b7216302763470796-640-0.jpeg" class="img-fluid rounded-start" alt="...">
+     </div>
+     <div class="col-md-8">
+       <div class="card-body">
+         <h5 class="card-title"><%= @product.name %></h5>
+         <ul class="list-group list-group-flush">
+           <li class="list-group-item">Descripcion: <%= @product.description %></li>
+            <li class="list-group-item">Marca: <%= @product.brand %></li>
+            <li class="list-group-item">Modelo: <%= @product.model %></li>
+            <li class="list-group-item">Precio: <%= @product.price %></li>
+         </ul>
+        </div>
       </div>
     </div>
   </div>
+       <div class="text-center mt-3"> 
+         <div class="btn-group" role="group">
+           <%= link_to 'Atras', products_path, class:'btn btn-outline-secondary' %>
+           <% if user_signed_in?%>
+            <%if current_user.client?%>
+            <%= link_to 'Agregar a carrito', '#', class:'btn btn-outline-success'%>
+            <%end%>
+            <%end%>
+          </div>
+       </div>
 </div>
-      <div class="text-center mt-3"> 
-        <%= link_to 'Atras', products_path, class:'btn btn-outline-secondary' %>
-      </div>
