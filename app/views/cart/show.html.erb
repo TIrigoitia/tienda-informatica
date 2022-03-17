@@ -1,0 +1,10 @@
+<% @order_items.each do |item|%>
+  <h3><%=item.product.name%>: <%= item.product.price%></h3>
+
+  <%= form_for item do |f| %>
+    <%= f.hidden_field :product, :value => item.product.id%>
+    <%= f.number_field :quantity, :value => item.quantity.to_i%>
+    <%= f.submit "Actualizar carrito"%>
+  <% end %>
+  <h1>Total: <%= item.total%></h1>
+<%end %>

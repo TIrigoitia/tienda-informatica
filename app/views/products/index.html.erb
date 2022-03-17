@@ -8,7 +8,7 @@
       <%= link_to 'Agregar Producto', new_product_path , class:'btn btn-outline-success'%>
     </div>
   <%end%>
- <div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="row row-cols-1 row-cols-md-3 g-4">
  
   <% @products.each do |product| %>
      <div class="card mx-2 mt-3" style="max-width: 18rem" >
@@ -24,19 +24,26 @@
         <h6 class="card-subtitle mb-2 text-muted">Descripcion: <%= product.description %></h6>
         <h6 class="card-subtitle mb-2 text-muted">Marca: <%= product.brand %></h6>
         <div class="btn-group" role="group">
-        <!--BOTON DE AGREGAR AL CARRO-->
         <%if can? :manage, product%>
           <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
           <%= link_to 'Editar', edit_product_path(product),class:'btn btn-outline-primary' %>
           <%= link_to 'Eliminar', product ,method: :delete, data: {confirm:'¿Esta seguro?'}, class:'btn btn-outline-danger'%>
         <%else%>
            <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
+           <%= form_for @order_item, remote: true do |f|%>
+            <%=f.hidden_field :product_id, :value => product.id%>
+            <%= f.number_field :quantity, :value => 1, :min => 1%>
+            <%= f.submit "Agregar al carrito"%>
+            <%end%>
         <%end%>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-
+<div id="cart">
+  
+<%= render 'cart/carts'%>
+ </div>
 
    

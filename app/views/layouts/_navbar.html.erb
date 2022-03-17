@@ -9,6 +9,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href=<%= root_path%>>Pagina principal</a>
         </li>
+        <li><a class="dropdown-item" href="<%= cart_show_path%>">Iniciar sesion</a></li>
         <%if user_signed_in?%>
           <%if current_user.admin?%>
             <li class="nav-item">
@@ -17,9 +18,15 @@
           <%end%>
         <%end%>
       </ul>
-      <button class="btn btn-secondary mx-3" href="#">
-        <i class="fa-solid fa-cart-shopping"></i>
-      </button>
+       <div class="dropdown mx-3">
+          <button type="button" class="btn btn-secondary dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="<%= cart_show_path%>">Mi carrito</a></li>
+            <li><a class="dropdown-item" href="#">Eliminar carrito</a></li>
+          </ul> 
+          </div>
       <%if (user_signed_in?) %>
        <div class="btn-group dropstart">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
