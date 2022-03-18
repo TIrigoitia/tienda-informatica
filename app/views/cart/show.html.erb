@@ -1,10 +1,40 @@
-<% @order_items.each do |item|%>
-  <h3><%=item.product.name%>: <%= item.product.price%></h3>
+<div class="text-center"><h1>Carrito de compras</h1></div>
 
-  <%= form_for item do |f| %>
-    <%= f.hidden_field :product, :value => item.product.id%>
-    <%= f.number_field :quantity, :value => item.quantity.to_i%>
-    <%= f.submit "Actualizar carrito"%>
-  <% end %>
-  <h1>Total: <%= item.total%></h1>
-<%end %>
+<% @order_items.each do |item|%>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%=item.product.name%>" aria-expanded="true" aria-controls="collapseOne">
+        <%= item.product.name%>
+      </button>
+    </h2>
+  <div id="collapse<%=item.product.name%>" class="accordion-collapse collapse hidden" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+  <div class="accordion-body">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">  
+        <%if item.product.image.attached? %>
+          <%= image_tag item.product.image , class:"img-fluid rounded-start"%>
+        <%else%>
+          <%= image_tag "no_image.png",class:'img-fluid rounded-start' %>
+        <%end%>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Descripcion: <%= item.product.description%></h5>
+          <h5>Modelo: <%= item.product.model%></h5>
+          <h5>Descripcion:<%= item.product.brand%></h5>
+          <h5>Precio unitario: <%= item.product.price%></h5>
+          <h5>Total: <%= item.total%></h5>
+          <%= form_for item do |f| %>
+            <%= f.hidden_field :product, :value => item.product.id%>
+            <%= f.number_field :quantity, :value => item.quantity.to_i%>
+            <%= f.submit "Actualizar carrito"%>
+          <%end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<% end %>

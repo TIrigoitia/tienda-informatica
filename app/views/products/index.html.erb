@@ -32,7 +32,7 @@
            <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
            <%= form_for @order_item, remote: true do |f|%>
             <%=f.hidden_field :product_id, :value => product.id%>
-            <%= f.number_field :quantity, :value => 1, :min => 1%>
+            <%= f.number_field :quantity, :value => 1, :min => 1, class:'form-control mb-3'%>
             <%= f.submit "Agregar al carrito"%>
             <%end%>
         <%end%>
@@ -41,9 +41,5 @@
     </div>
   <% end %>
 </div>
-<div id="cart">
-  
-<%= render 'cart/carts'%>
- </div>
 
    
