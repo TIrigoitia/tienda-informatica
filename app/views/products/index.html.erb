@@ -9,9 +9,8 @@
     </div>
   <%end%>
 <div class="row row-cols-1 row-cols-md-3 g-4">
- 
   <% @products.each do |product| %>
-     <div class="card mx-2 mt-3" style="max-width: 18rem" >
+     <div class="card mx-2 mt-3" style="max-width: 18rem">
         <%if product.image.attached?%>
         <%= image_tag product.image, class:"card-img-top"%>
         <%else%>
@@ -23,20 +22,22 @@
         <h6 class="card-subtitle mb-2 text-muted">Modelo: <%= product.model %></h6>
         <h6 class="card-subtitle mb-2 text-muted">Descripcion: <%= product.description %></h6>
         <h6 class="card-subtitle mb-2 text-muted">Marca: <%= product.brand %></h6>
-        <div class="btn-group" role="group">
         <%if can? :manage, product%>
+        <div class="btn-group" role="group">
           <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
           <%= link_to 'Editar', edit_product_path(product),class:'btn btn-outline-primary' %>
           <%= link_to 'Eliminar', product ,method: :delete, data: {confirm:'¿Esta seguro?'}, class:'btn btn-outline-danger'%>
+        </div>
         <%else%>
            <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
            <%= form_for @order_item, remote: true do |f|%>
-            <%=f.hidden_field :product_id, :value => product.id%>
-            <%= f.number_field :quantity, :value => 1, :min => 1, class:'form-control mb-3'%>
-            <%= f.submit "Agregar al carrito"%>
-            <%end%>
+            <div class="input-group mb-3"> 
+              <%=f.hidden_field :product_id, :value => product.id%>
+              <%= f.number_field :quantity, :value => 1, :min => 1, class:'form-control form-control-sm'%>
+              <%= f.submit "Agregar al carrito", class:'btn btn-sm btn-outline-success'%>
+            </div>
+           <%end%>
         <%end%>
-        </div>
       </div>
     </div>
   <% end %>
