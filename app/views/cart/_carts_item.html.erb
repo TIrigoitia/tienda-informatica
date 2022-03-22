@@ -3,11 +3,11 @@
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%=item.product.name%>" aria-expanded="true" aria-controls="collapseOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%=item.product.id%>" aria-expanded="true" aria-controls="collapseOne">
           <%= item.product.name%>
       </button>
     </h2>
-  <div id="collapse<%=item.product.name%>" class="accordion-collapse collapse hidden" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+  <div id="collapse<%=item.product.id%>" class="accordion-collapse collapse hidden" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
   <div class="accordion-body">
   <div class="card mb-3" style="max-width: 540px;">
     <div class="row g-0">
@@ -22,15 +22,15 @@
         <div class="card-body">
           <h5>Descripcion: <%= item.product.description%></h5>
           <h5>Modelo: <%= item.product.model%></h5>
-          <h5>Descripcion:<%= item.product.brand%></h5>
-          <h5>Precio unitario: <%= item.product.price%></h5>
-          <h5>Total: <%= item.total%></h5>
+          <h5>Marca:<%= item.product.brand%></h5>
+          <h5>Precio unitario: $<%= item.product.price.to_i%></h5>
           <%= form_for item, remote: true do |f| %>
           <div class="input-group mb-2">
             <%= f.hidden_field :product, :value => item.product.id%>
             <%= f.number_field :quantity, :value => item.quantity.to_i, class:'form-control form-control-sm'%>
             <%= f.submit "Actualizar carrito",  class:'btn btn-sm btn-outline-dark'%>
           </div>
+          <h5>Subtotal: $<%= item.total.to_i%></h5>
             <%= link_to "Quitar producto", order_item_path(item), method: :delete, remote: true, class:'btn btn-sm btn-outline-danger'%>
           <%end %>
         </div>

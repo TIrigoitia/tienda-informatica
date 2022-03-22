@@ -12,3 +12,11 @@ u.save!
 u = User.new(email:'client@client',password:'123456',password_confirmation:'123456', role: 'client')
 if u.valid? then u.save! end
 u.save!
+
+p = Product.new(name:'Samsung S22', description:'Telefono con 3 camaras',price:'50000',model:'Ss22', brand:'Samsung')
+if p.valid? then p.save! end
+p.save!
+
+p = Product.new(name:'Motorola G20', description:'Telefono smart',price:'45000',model:'MG20', brand:'Motorola')
+if p.valid? then p.save! end
+p.save!
