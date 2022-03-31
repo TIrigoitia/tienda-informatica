@@ -1,10 +1,5 @@
 module ApplicationHelper
-
   def current_order
-    if !(session[:order_id].nil?)
-      Order.find(session[:order_id])
-    else
-      Order.new
-    end
+    current_order=current_user.orders.last
   end
 end

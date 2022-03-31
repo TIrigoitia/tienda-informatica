@@ -46,7 +46,7 @@
 <div class="col-md-auto">
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="El total del carrito es de $<%= current_order.subtotal.to_i%>"  disabled>
-    <button class="btn btn-success">Pagar</button>
+    <%=link_to 'Pagar', cart_confirmar_path, class:'btn btn-success'%>
     <%=link_to 'Seguir comprando', root_path, class:'btn btn-outline-secondary'%>
   </div>
 </div>

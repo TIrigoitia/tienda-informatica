@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
+  belongs_to :user
   has_many :order_items
+  enum status: {sin_confirmar: 0, confirmada: 1, pagada: 2}
   
   def subtotal
     order_items.collect{|order_item| order_item.valid? ? order_item.unit_price*order_item.quantity : 0}.sum

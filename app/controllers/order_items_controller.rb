@@ -1,9 +1,16 @@
 class OrderItemsController < ApplicationController
   def create
-    @order = current_order
-    @order_item = @order.order_items.new(order_params)
-    @order.save
-    session[:order_id]=@order.id
+    if user_signed_in?
+      @order = current_order
+      @order_item = @order.order_items.new(order_params)
+      @order.user_id=current_user.id
+      @order.status=0
+      @order.save
+    else
+      redirect_to new_user_session_path
+      flash.now[:notice] = 'Tienes que iniciar sesion para agregar productos a tu carrito'
+    end
+
   end
 
   def update
@@ -24,7 +31,7 @@ class OrderItemsController < ApplicationController
 private
 
   def order_params
-    params.require(:order_item).permit(:product_id, :quantity)
+    params.require(:order_item).permit(:product_id, :quantity, :status,:user_id)
   end
 
 

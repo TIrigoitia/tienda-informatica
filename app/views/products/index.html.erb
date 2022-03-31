@@ -30,12 +30,14 @@
         </div>
         <%else%>
            <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
-           <%= form_for @order_item, remote: true do |f|%>
-            <div class="input-group mb-3"> 
-              <%=f.hidden_field :product_id, :value => product.id%>
-              <%= f.number_field :quantity, :value => 1, :min => 1, class:'form-control form-control-sm'%>
-              <%= f.submit "Agregar al carrito", class:'btn btn-sm btn-outline-success'%>
-            </div>
+            <% if user_signed_in?%>
+              <%= form_for @order_item, remote: true do |f|%>
+                <div class="input-group mb-3">
+                  <%=f.hidden_field :product_id, :value => product.id%>
+                  <%= f.number_field :quantity, :value => 1, :min => 1, class:'form-control form-control-sm'%>
+                  <%= f.submit "Agregar al carrito", class:'btn btn-sm btn-outline-success'%>
+                </div>
+              <%end%>
            <%end%>
         <%end%>
       </div>

@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @order_item = current_order.order_items.new
+    @order_item = current_order.order_items.new if user_signed_in? && current_user.client?
   end
 
   # GET /products/1 or /products/1.json
