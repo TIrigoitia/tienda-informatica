@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'cart/confirmar'
   get 'cart/show'
   devise_for :users
+  resources :orders
   resources :products
   resources :order_items
   resources :cart

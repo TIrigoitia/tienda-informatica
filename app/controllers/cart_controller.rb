@@ -9,8 +9,9 @@ class CartController < ApplicationController
   end
 
   def confirmar
-    current_order.status=1
-    current_order.save
+    order=current_user.orders.last
+    order.status=1
+    order.save
     current_order= current_user.orders.new(status: 0, user_id: current_user.id)
     current_order.save
   end

@@ -9,7 +9,7 @@ u = User.new(email:'admin@admin',password:'123456',password_confirmation:'123456
 if u.valid? then u.save! end
 u.save!
 
-u = User.new(email:'client@client',password:'123456',password_confirmation:'123456', role: 'client')
+u = User.new(email:'client@client',password:'123456',password_confirmation:'123456', role: 'client', name: 'Tomas', lastname: 'Irigoitia', address: '637 n° 660', locality: 'La Plata', phone_number: '221561688')
 if u.valid? then u.save! end
 u.save!
 
