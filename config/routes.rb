@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'admin/index'
   get 'admin/orders'
+  delete 'admin/index'
   get 'cart/confirmar'
   get 'cart/show'
   devise_for :users

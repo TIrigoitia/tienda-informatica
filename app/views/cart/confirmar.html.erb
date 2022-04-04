@@ -1,8 +1,4 @@
-<div class="card card-outline card-primary">
-  <div class="card-header">
-    <%=current_order.status%>
-  </div>
-  <div class="card-body">
-    <%=current_order.id%>
-  </div>
+<div class="alert alert-primary" role="alert">
+  La orden se genero correctamente, para verla haga click  <a href="<%= order_path(current_user.orders[-2]) %>" class="alert-link">aqui</a>
 </div>
+

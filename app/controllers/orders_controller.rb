@@ -12,9 +12,15 @@ class OrdersController < ApplicationController
     @order.status=3
     @order.save
     respond_to do |format|
-      format.html { redirect_to orders_path alert: "La orden se cancelo correctamente" }
+      if current_user.client?
+        format.html { redirect_to orders_path, alert: "La orden se cancelo correctamente" }
+     else
+       format.html {redirect_to admin_index_path, alert: "La orden se cancelo correctamente"}
+     end
     end
   end
+  
+  
 private
   def set_order
     @order = Order.find(params[:id])

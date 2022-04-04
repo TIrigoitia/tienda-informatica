@@ -2,9 +2,8 @@ class AdminController < ApplicationController
 
   def index
     redirect_to root_path unless current_user.admin?
+    @orders = Order.all
   end
   
-  def orders
-    @orders = Order.where(status: 1)
-  end
+
 end

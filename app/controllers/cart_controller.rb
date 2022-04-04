@@ -11,6 +11,7 @@ class CartController < ApplicationController
   def confirmar
     order=current_user.orders.last
     order.status=1
+    order.fecha_confirmacion=Time.now
     order.save
     current_order= current_user.orders.new(status: 0, user_id: current_user.id)
     current_order.save
