@@ -26,6 +26,7 @@
         <%end%>
         <td>$<%= order.subtotal.to_i %></td>
         <td><div class="btn-group">
+        <%= link_to 'Aceptar', admin_concretar_orden_path(:id => order.id) , class: 'btn btn-sm btn-outline-success'%>
         <%= link_to 'Detalles', order, class:'btn btn-sm btn-outline-primary' %>
         <%= link_to 'Eliminar', order ,method: :delete, data: {confirm:'¿Esta seguro de cancelar la orden?'}, class:'btn btn-sm btn-outline-danger'%>
         </div>
