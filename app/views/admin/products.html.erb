@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <div class="text-center">
-  <h1>Productos disponibles</h1>
+  <h1>Mis Productos</h1>
 </div>
+  <div class="text-center mb-3">
+    <%= link_to 'Agregar Producto', new_product_path , class:'btn btn-outline-success'%>
+  </div>
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% @products.each do |product| %>
      <div class="card mx-2 mt-3" style="max-width: 18rem">
@@ -17,19 +20,16 @@
         <h6 class="card-subtitle mb-2 text-muted">Modelo: <%= product.model %></h6>
         <h6 class="card-subtitle mb-2 text-muted">Descripcion: <%= product.description %></h6>
         <h6 class="card-subtitle mb-2 text-muted">Marca: <%= product.brand %></h6>
-        <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
-        <% if user_signed_in? && current_user.client?%>
-          <%= form_for @order_item, remote: true do |f|%>
-            <div class="input-group mb-3">
-              <%=f.hidden_field :product_id, :value => product.id%>
-              <%= f.number_field :quantity, :value => 1, :min => 1, class:'form-control form-control-sm'%>
-              <%= f.submit "Agregar al carrito", class:'btn btn-sm btn-outline-success'%>
-            </div>
-          <%end%>
-        <%end%>
-    </div>
+        <div class="btn-group" role="group">
+          <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
+          <%= link_to 'Editar', edit_product_path(product),class:'btn btn-outline-primary' %>
+          <%= link_to 'Eliminar', product ,method: :delete, data: {confirm:'¿Esta seguro?'}, class:'btn btn-outline-danger'%>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
 
-   
+<div class="text-center">
+<%= link_to 'Atras', admin_index_path, class:'btn btn-outline-secondary mt-3'%>
+</div>

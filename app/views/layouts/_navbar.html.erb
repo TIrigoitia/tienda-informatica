@@ -7,7 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=<%= root_path%>>Pagina principal</a>
+          <a class="nav-link active" aria-current="page" href=<%= root_path%>>
+            <%if user_signed_in? && current_user.admin?%>
+              Vista del cliente
+            <%else%>
+              Pagina Principal
+            <% end %>
+          </a>
         </li>
         <%if user_signed_in?%>
           <%if current_user.admin?%>
@@ -27,17 +33,13 @@
           <a class="btn btn-secondary" href="<%= cart_show_path%>">
               <i class="fa-solid fa-cart-shopping"></i>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="<%= cart_show_path%>">Mi carrito</a></li>
-              <li><a class="dropdown-item" href="#">Eliminar carrito</a></li>
-          </ul>
         </div>
         <%end%>
       <%if (user_signed_in?) %>
        <div class="btn-group dropstart">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-circle-user"></i> 
-            <a><%= current_user.email%></a> 
+            <a><%= current_user.name.humanize%></a> 
           </button>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item"><%= link_to "Editar", edit_user_registration_path, class:'dropdown-item' %></a></li>

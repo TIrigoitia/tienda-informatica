@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'admin/index'
   get 'admin/orders'
   get 'admin/concretar_orden'
+  get 'admin/products'
   delete 'admin/index'
   get 'cart/confirmar'
   get 'cart/show'
