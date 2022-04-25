@@ -13,12 +13,12 @@
         <%end%>
       <div class="card-body">
         <h5 class="card-title"><%= product.name%></h5>
-        <h6 class="card-subtitle mb-2 text-muted">Precio: <%= product.price%></h6>
+        <h6 class="card-subtitle mb-2 text-muted">Precio: $<%= product.price.to_i%></h6>
         <h6 class="card-subtitle mb-2 text-muted">Modelo: <%= product.model %></h6>
         <h6 class="card-subtitle mb-2 text-muted">Descripcion: <%= product.description %></h6>
         <h6 class="card-subtitle mb-2 text-muted">Marca: <%= product.brand %></h6>
         <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
-        <% if user_signed_in? && current_user.client?%>
+        <% if user_signed_in? && current_user.client? && product.stock%>
           <%= form_for @order_item, remote: true do |f|%>
             <div class="input-group mb-3">
               <%=f.hidden_field :product_id, :value => product.id%>

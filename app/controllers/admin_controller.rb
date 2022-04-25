@@ -21,5 +21,17 @@ class AdminController < ApplicationController
     @orders = Order.all
   end
 
+  def show_order
+    redirect_to root_path unless user_signed_in? &&  current_user.admin?
+    @order=Order.find_by(id: params[:id])
+  end
+
+  def show_product
+    redirect_to root_path unless user_signed_in? && current_user.admin?
+    @product = Product.find_by(id: params[:id])
+  end
+
+
+
 
 end

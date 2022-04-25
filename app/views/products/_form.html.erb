@@ -49,10 +49,19 @@
     </div>
   </div>
 
+
+<div class="input-group mb-3">
+  <span class="input-group-text">Presente en stock</span>
+  <div class="input-group-text">
+   <%= form.check_box :stock, class:'form-check-input mt-0'%>
+  </div>
+</div>
+
+
   <div class="form-group">
     <div class="input-group mb-3">
       <span class="input-group-text mb-3">Imagen</span>
-      <%= form.file_field :image, class:'form-control'%>
+      <%= form.file_field :image, class:'form-control mb-3'%>
     </div>
   </div>
 
