@@ -17,10 +17,7 @@
            <li class="list-group-item">Descripcion: <%= @product.description %></li>
             <li class="list-group-item">Marca: <%= @product.brand %></li>
             <li class="list-group-item">Modelo: <%= @product.model %></li>
-            <li class="list-group-item">Precio: <%= @product.price %></li>
-            <% if !user_signed_in? || current_user.client? %>
-              <li class="list-group-item">Stock: <%= @product.stock %></li>
-            <% end %>
+            <li class="list-group-item">Precio: $ <%= @product.price.to_i %></li>
          </ul>
         </div>
       </div>

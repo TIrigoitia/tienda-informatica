@@ -2,6 +2,10 @@ class AdminController < ApplicationController
 
   def index
     redirect_to root_path unless user_signed_in? &&   user_signed_in? && current_user.admin? 
+    @ultimas_ordenes=[]
+    @ultimas_ordenes << Order.last(-1)
+    @ultimas_ordenes << Order.last
+  
   end
 
   def concretar_orden

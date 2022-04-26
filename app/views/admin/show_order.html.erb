@@ -47,10 +47,17 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Total de la orden: $<%= @order.subtotal.to_i%></li>
         <li class="list-group-item">Titular de la orden: <%= @order.user.name%> <%= @order.user.lastname%></li>
+        <li class="list-group-item">Direccion de entrega de la orden: <%= @order.user.address%></li>
       </ul>
     </div>
-    <div class="card-footer text-muted">
-      Generada el dia <%= @order.fecha_confirmacion.strftime("%d-%m-%Y a las %H:%M")%>
-    </div>
+    <% if  @order.fecha_confirmacion.present?%>  
+        <div class="card-footer text-muted">
+          Generada el dia <%= @order.fecha_confirmacion.strftime("%d-%m-%Y a las %H:%M")%>
+        </div>
+    <% else %>
+        <div class="card-footer text-muted">
+          Orden sin confirmar
+        </div>
+    <% end %>
   </div>
 </div>

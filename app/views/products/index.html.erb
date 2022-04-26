@@ -18,14 +18,21 @@
         <h6 class="card-subtitle mb-2 text-muted">Descripcion: <%= product.description %></h6>
         <h6 class="card-subtitle mb-2 text-muted">Marca: <%= product.brand %></h6>
         <%= link_to 'Detalles', product, class:'btn btn-outline-primary' %>
-        <% if user_signed_in? && current_user.client? && product.stock%>
+        <% if user_signed_in? && current_user.client?%>
           <%= form_for @order_item, remote: true do |f|%>
             <div class="input-group mb-3">
               <%=f.hidden_field :product_id, :value => product.id%>
               <%= f.number_field :quantity, :value => 1, :min => 1, class:'form-control form-control-sm'%>
-              <%= f.submit "Agregar al carrito", class:'btn btn-sm btn-outline-success'%>
+              <%if product.stock%>
+                <%= f.submit "Agregar al carrito", class:'btn btn-sm btn-outline-success'%>
+              <% else %>
+                <%= f.submit "Agregar al carrito", class:'btn btn-sm btn-outline-success disabled'%>
+                <h6 class="text-muted">Fuera de stock</h6>
+              <% end %>
             </div>
-          <%end%>
+          <% end %>
+        <%elsif !user_signed_in? %>
+          <li class="list-group-item"><h6 class="text-muted">Debe inciar sesion para agregar items al carrito</h6></li>
         <%end%>
     </div>
     </div>
